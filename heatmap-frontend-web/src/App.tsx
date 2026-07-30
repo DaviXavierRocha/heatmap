@@ -8,7 +8,7 @@ function App() {
   const [ocorrencias, setOcorrencias] = useState([]);
   
   // Lembre-se: Coloque o mesmo IP/Porta onde seu server.js está rodando!
-  const API_URL = 'http://10.130.85.174:3000/ocorrencias/todas'; 
+  const API_URL = 'https://heatmap-cbkg.onrender.com/ocorrencias/todas'; 
 
   useEffect(() => {
     // Polling básico: busca novos dados a cada 10 segundos

@@ -5,7 +5,7 @@ import React, { useMemo } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, Polyline, Circle } from 'react-leaflet';
 import * as turf from '@turf/turf';
 import 'leaflet/dist/leaflet.css';
-
+import type { Feature, Point } from 'geojson';
 // Corrigindo o bug nativo de ícones do Leaflet no React
 import L from 'leaflet';
 import icon from 'leaflet/dist/images/marker-icon.png';
@@ -36,7 +36,7 @@ const MapaTatico: React.FC<MapaTaticoProps> = ({ ocorrencias }) => {
 // Algoritmo de Triangulação e Clustering (Memoizado)
   const { linhasDeVisao, epicentros } = useMemo(() => {
     const linhas: [number, number][][] = [];
-    const cruzamentosBrutos: turf.Feature<turf.Point>[] = [];
+    const cruzamentosBrutos: Feature<Point>[] = [];
     const distMaxKm = 30; 
 
     // 1. Gera as linhas de visão para cada agente
@@ -73,7 +73,7 @@ const MapaTatico: React.FC<MapaTaticoProps> = ({ ocorrencias }) => {
     }
 
     // 3. CLUSTERING (Agrupando os erros por proximidade)
-    const grupos: turf.Feature<turf.Point>[][] = [];
+    const grupos: Feature<Point>[][] = []
     const TOLERANCIA_KM = 2.0; // Se os cruzamentos estão num raio de 2km, é o mesmo incêndio
 
     cruzamentosBrutos.forEach(ponto => {
